@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 20th Birthday Somto (Somtomato)!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease;
+        }
+        
+        .birthday-container {
+            display: none;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease;
+        }
+        
+        h1 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            color: #e74c3c;
+            margin: 20px 0;
+            font-size: 2rem;
+        }
+        
+        p {
+            color: #333;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        
+        .password-form {
+            margin: 30px 0;
+        }
+        
+        input {
+            padding: 15px;
+            width: 70%;
+            max-width: 300px;
+            border: 2px solid #ff6b6b;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            outline: none;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            border-color: #e74c3c;
+            box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+        }
+        
+        button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .error {
+            color: #e74c3c;
+            margin-top: 15px;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .tomato {
+            font-size: 3rem;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+        
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .gallery-item {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            background: #ff6b6b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3rem;
+            animation: float 3s infinite ease-in-out;
+        }
+        
+        .gallery-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .gallery-item:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .gallery-item:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+        
+        .message {
+            background: #fff8e1;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 10px;
+            text-align: left;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .countdown-item {
+            background: #e74c3c;
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+        
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+        }
+        
+        footer {
+            margin-top: 30px;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @media (max-width: 600px) {
+            .login-container, .birthday-container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            input {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Screen -->
+        <div class="login-container" id="loginScreen">
+            <h1>🎉 Happy 20th Birthday Somto! 🎉</h1>
+            <div class="tomato">🍅</div>
+            <p>Only Somtomato's closest friends can access this special birthday page!</p>
+            <p>Enter the password to celebrate with us:</p>
+            
+            <form class="password-form" id="passwordForm">
+                <input type="password" id="password" placeholder="Enter password" autocomplete="off">
+                <button type="submit">Enter Birthday Zone</button>
+                <div class="error" id="errorMessage">Incorrect password. Hint: 20192019</div>
+            </form>
+        </div>
+        
+        <!-- Birthday Content (Hidden until password is entered) -->
+        <div class="birthday-container" id="birthdayContent">
+            <h1>🍅 Happy 20th Birthday Somtomato! 🍅</h1>
+            <div class="tomato">🎉</div>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            
+            <p>Celebrating 20 amazing years of your life!</p>
+            
+            <div class="gallery">
+                <div class="gallery-item">🎂</div>
+                <div class="gallery-item">🎈</div>
+                <div class="gallery-item">🎁</div>
+                <div class="gallery-item">🎊</div>
+            </div>
+            
+            <div class="message">
+                <h2>Dear Somtomato,</h2>
+                <p>Happy 20th Birthday! 🎉 As you step into this new decade, may your life continue to be filled with joy, laughter, and all the tomatoes you can eat! </p>
+                <p>You've grown into an incredible person, and we're all so proud of the amazing journey you've been on. Here's to 20 wonderful years and many more to come!</p>
+                <p style="text-align: right; margin-top: 15px;">With love,<br>Your Friends</p>
+            </div>
+            
+            <button id="surpriseBtn">Click for a Surprise!</button>
+        </div>
+    </div>
+    
+    <footer>
+        Made with ❤️ for Somto's 20th Birthday
+    </footer>
+
+    <script>
+        // Password protection
+        document.getElementById('passwordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            
+            if(password === '20192019') {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('birthdayContent').style.display = 'block';
+                startCountdown();
+                createFireworks();
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+            }
+        });
+        
+        // Birthday countdown (to next birthday)
+        function startCountdown() {
+            const nextBirthday = new Date();
+            nextBirthday.setFullYear(nextBirthday.getFullYear() + 1, 0, 1); // January 1st next year
+            
+            const updateCountdown = () => {
+                const now = new Date();
+                const diff = nextBirthday - now;
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').innerText = days.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+            };
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+        
+        // Fireworks effect
+        function createFireworks() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#ffbe0b', '#fb5607', '#ff006e'];
+            
+            setInterval(() => {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                
+                const size = Math.random() * 10 + 2;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                firework.style.width = `${size}px`;
+                firework.style.height = `${size}px`;
+                firework.style.backgroundColor = color;
+                firework.style.left = `${Math.random() * 100}vw`;
+                firework.style.top = `${Math.random() * 100}vh`;
+                
+                document.body.appendChild(firework);
+                
+                // Animate firework
+                let posX = parseFloat(firework.style.left);
+                let posY = parseFloat(firework.style.top);
+                const xSpeed = (Math.random() - 0.5) * 4;
+                const ySpeed = (Math.random() - 0.5) * 4;
+                
+                const animate = () => {
+                    posX += xSpeed;
+                    posY += ySpeed;
+                    firework.style.left = `${posX}vw`;
+                    firework.style.top = `${posY}vh`;
+                    
+                    const opacity = parseFloat(firework.style.opacity);
+                    if (opacity > 0) {
+                        firework.style.opacity = opacity - 0.02;
+                        requestAnimationFrame(animate);
+                    } else {
+                        firework.remove();
+                    }
+                };
+                
+                animate();
+            }, 300);
+        }
+        
+        // Surprise button
+        document.getElementById('surpriseBtn').addEventListener('click', function() {
+            const messages = [
+                "You're awesome! 🎉",
+                "Have the best day ever! 🍅",
+                "20 looks great on you!",
+                "Keep being amazing!",
+                "Cheers to another year!",
+                "Hope your day is tomato-rrific!",
+                "Sending you birthday hugs!",
+                "May your year be as sweet as you!"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert(randomMessage);
+        });
+        
+        // Focus on password field when page loads
+        window.onload = function() {
+            document.getElementById('password').focus();
+        };
+    </script>
+</body>
+</html>
